@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+<style>
+body{
+  background-image:url("https://img5.goodfon.com/wallpaper/nbig/6/ec/knigi-stopka-stol-stranitsy.jpg");
+}
+</style>
+<body>
+<table width='80%' border=0>
+
+	<tr style='text-align:left;  background-color:#CCC'>
+		<th style="font-weight:bold; font-size:20px;">Name</th>
+		<th style="font-weight:bold; font-size:20px;">Age</th>
+		<th style="font-weight:bold; font-size:20px;">Email</th>
+		<th style="font-weight:bold; font-size:20px;">Action</th>
+	</tr>
+
+	<!--
+		Using FOREACH LOOP for the users array
+
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<% if (data) { %>
+	<% data.forEach(function(user){ %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.age %></td>
+			<td><%= user.email %></td>
+			<td>
+				<div style="float:left">
+					<a href='/users/edit/<%= user._id %>' class="btn btn-primary">Edit</a> &nbsp;
+					<form method="post" action="/users/delete/<%= user._id %>" style="float:right">
+						<input type="submit" class="btn btn-danger" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden"  name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>

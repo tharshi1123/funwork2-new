@@ -1,0 +1,48 @@
+<!--
+including header content which is common for all pages
+-->
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+<style>
+body{
+  background-image:url("https://img5.goodfon.com/wallpaper/nbig/6/ec/knigi-stopka-stol-stranitsy.jpg");
+}
+</style>
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+<body>
+<form action="/users/add" method="post" name="form1">
+	<table style= "margin-left:10px; border:3px solid black; width:400px; height:350px;">
+		<tr style="margin-left:10px;">
+			<td style="width:100px; font-weight:bold; font-size:20px; margin-right:50px;">&nbsp&nbsp&nbsp&nbspName:</td>
+			<td><input style="height:30px;" type="text" name="name" id="name" value="<%= name %>" /></td>
+		</tr>
+		<tr>
+			<td  style="width:100px; font-weight:bold; font-size:20px;">&nbsp&nbsp&nbsp&nbspAge:</td>
+			<td><input style="height:30px;"type="text" name="age" value="<%= age %>" /></td>
+		</tr>
+		<tr>
+			<td style="width:100px; font-weight:bold; font-size:20px;">&nbsp&nbsp&nbsp&nbspEmail:</td>
+			<td><input style="height:30px;type="text" name="email" value="<%= email %>" /></td>
+		</tr>
+		<tr>
+<td></td>
+			<td><input class="btn btn-success" style="margin-left:30px;" type="submit" name="Submit" value="Add" /></td>
+		</tr>
+	</table>
+</form>
+<img style="width:200px;height:200px;"src="https://lh3.googleusercontent.com/proxy/KPc7lviZYd457qlpe9t16WwHZDAd8QPB3xyupQjgcF9SvheDOBO26TnmIewqKsPLpak83To0EmKo9UouZKVOu1LfIwvLJCzFKQ">
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
